@@ -7,8 +7,10 @@ if (NOT DEFINED PA_DIRECTORY)
 	set(PA_DIRECTORY ${CMAKE_SOURCE_DIR})
 endif ()
 
-
-set(OBOE_DIRECTORY ${PA_DIRECTORY}/oboe-main)
+set(OBOE_DIRECTORY ${PA_DIRECTORY}/../oboe-main)
+if(NOT DEFINED OBOE_DIRECTORY)
+	message("Please set OBOE_DIRECTORY to the path of the cloned Oboe repository.")
+endif()
 set(OBOE_INCLUDE_DIR ${OBOE_DIRECTORY}/include)
 set(OBOE_BUILD_DIR ${OBOE_DIRECTORY}/build)
 
