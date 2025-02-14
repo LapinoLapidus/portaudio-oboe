@@ -930,7 +930,7 @@ PaError IsInputSampleRateSupported(PaOboeHostApiRepresentation *oboeHostApi, dou
 static PaError IsOutputChannelCountSupported(
         PaOboeHostApiRepresentation *oboeHostApi,
         int32_t numOfChannels) {
-    if (numOfChannels > 2 || numOfChannels == 0) {
+    if (numOfChannels == 0) {
         LOGE("[PaOboe - IsOutputChannelCountSupported]\t Invalid channel count.");
         return paInvalidChannelCount;
     }
@@ -958,7 +958,7 @@ static PaError IsOutputChannelCountSupported(
 static PaError IsInputChannelCountSupported(
         PaOboeHostApiRepresentation *oboeHostApi,
         int32_t numOfChannels) {
-    if (numOfChannels > 2 || numOfChannels == 0) {
+    if (numOfChannels == 0) {
         LOGE("[PaOboe - IsInputChannelCountSupported]\t Invalid channel count.");
         return paInvalidChannelCount;
     }
@@ -1043,8 +1043,8 @@ PaError PaOboe_Initialize(PaUtilHostApiRepresentation **hostApi, PaHostApiIndex 
         m_deviceInfo->name = "default";
 
         /* Try channels in order of preference - Stereo > Mono. */
-        const int32_t m_channelsToTry[] = {2, 1};
-        const int32_t m_channelsToTryLength = 2;
+        const int32_t m_channelsToTry[] = {8, 6, 3, 2, 1};
+        const int32_t m_channelsToTryLength = 5;
 
         m_deviceInfo->maxOutputChannels = 0;
         m_deviceInfo->maxInputChannels = 0;
